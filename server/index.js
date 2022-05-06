@@ -4,10 +4,14 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import env from 'dotenv';
 
+import postRoutes from './routes/posts.js';
+
 env.config();
 const { MONGODB_USERNAME, MONGODB_PASSWORD } = process.env;
 
 const app = express();
+
+app.use('/posts', postRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
