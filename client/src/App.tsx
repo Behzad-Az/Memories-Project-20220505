@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
-import { getPosts } from './store/actions/posts';
+import { fetchPosts } from './store/actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import memories from './images/memories.png';
@@ -22,7 +22,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPosts());
+    dispatch(fetchPosts());
   }, []);
 
   return (

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// import { useAppSee } from 'react-redux';
 import { useAppSelector } from '../../store/store';
 
 import Post from './Post/Post';

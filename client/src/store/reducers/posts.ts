@@ -1,29 +1,16 @@
-// import { FETCH_ALL } from './'
-import { FETCH_ALL } from '../actions/posts';
+import { REWRITE_POSTS } from '../actions/posts';
+import { Posts } from '../../types/posts';
 
-interface Post {
-  message: string;
-};
-type APIStatus = 'loading' | 'loaded' | 'failed' | 'initial';
-interface Posts {
-  lastFetched: number;
-  apiStatus: APIStatus;
-  error: string;
-  content: Post[];
-};
-
-type State = Posts;
-
-const initialState: State = {
+const initialState: Posts = {
   lastFetched: Date.now(),
   apiStatus: 'initial',
   error: '',
   content: []
 };
 
-export default function reducer(prevState: State = initialState, action: { type: string; payload: any; }) : State {
+export default function reducer(prevState: Posts = initialState, action: { type: string; payload: any; }) : Posts {
   switch (action.type) {
-    case FETCH_ALL:
+    case REWRITE_POSTS:
       return action.payload;
     case 'CREATE':
       return prevState;
