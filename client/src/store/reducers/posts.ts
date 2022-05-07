@@ -1,5 +1,5 @@
-import { REWRITE_POSTS } from '../actions/posts';
-import { Posts } from '../../types/posts';
+import { REWRITE_POSTS, ADD_TO_POSTS } from '../actions/posts';
+import { Posts, Post } from '../../types/posts';
 
 const initialState: Posts = {
   lastFetched: Date.now(),
@@ -8,12 +8,18 @@ const initialState: Posts = {
   content: []
 };
 
+const addToPosts = (prevState: Posts, newPost: Post) : Posts => {
+  const newState = { ...prevState };
+  newState.content = [ ...newState.content, newPost ];
+  return newState;
+};
+
 export default function reducer(prevState: Posts = initialState, action: { type: string; payload: any; }) : Posts {
   switch (action.type) {
     case REWRITE_POSTS:
       return action.payload;
-    case 'CREATE':
-      return prevState;
+    case ADD_TO_POSTS:
+      return addToPosts(prevState, action.payload);
     default:
       return prevState;
   };

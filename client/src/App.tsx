@@ -6,8 +6,8 @@ import {
   Grow,
   Grid
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
 
+import { useAppDispatch } from './store/store';
 import { fetchPosts } from './store/actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
@@ -19,7 +19,7 @@ import useStyles from './styles';
 
 function App() {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchPosts());

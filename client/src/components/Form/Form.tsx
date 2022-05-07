@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, FormEventHandler, ReactEventHandler, useState } from 'react';
 import {
   TextField,
   Button,
@@ -8,28 +8,28 @@ import {
 // import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
+import { createPost } from '../../store/actions/posts';
+import { useAppDispatch } from '../../store/store';
+import { Post } from '../../types/posts';
 
 interface Props {};
 
-interface FormData {
-  creator: string;
-  title: string;
-  message: string;
-  tags: string;
-  selectedFile: string;
-};
+type FormData = Post;
 
 const Form: FC<Props> = () : JSX.Element => {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
   const [postData, setPostData] = useState<FormData>({
     creator: '',
     title: '',
     message: '',
     tags: '',
-    selectedFile: ''
+    selectedFile: 'some_file'
   });
 
-  const handleSubmit = () : void => {
+  const handleSubmit = (event: React.SyntheticEvent) : void => {
+    event.preventDefault();
+    dispatch(createPost(postData));
 
   };
 
