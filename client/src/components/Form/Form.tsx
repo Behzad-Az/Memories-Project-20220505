@@ -5,7 +5,7 @@ import {
   Typography,
   Paper
 } from '@material-ui/core';
-import FileBase from 'react-file-base64';
+// import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
 
@@ -33,9 +33,13 @@ const Form: FC<Props> = () : JSX.Element => {
 
   };
 
+  const handleClear = () : void => {
+
+  };
+
   return (
     <Paper className={classes.paper}>
-      <form autoComplete='off' noValidate className={classes.form} onSubmit={handleSubmit}>
+      <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
         <Typography variant='h6'>Creating a Memory</Typography>
         <TextField
           name='creator'
@@ -82,12 +86,32 @@ const Form: FC<Props> = () : JSX.Element => {
           })}
         />
         <div className={classes.fileInput}>
-          {/* <FileBase64
+          {/* <FileBase
             type='file'
             multiple={false}
-            // onDone={(output: any) => setPostData({ ...postData, selectedFile: output.base64 })}
+            onDone={(output: any) => setPostData({ ...postData, selectedFile: output.base64 })}
           /> */}
         </div>
+        <Button 
+          className={classes.buttonSubmit}
+          variant='contained'
+          color='primary'
+          size='large'
+          type='submit'
+          fullWidth
+        >
+          Submit
+        </Button>
+        <Button 
+          className={classes.buttonSubmit}
+          variant='contained'
+          color='secondary'
+          size='small'
+          onClick={handleClear}
+          fullWidth
+        >
+          Clear
+        </Button>
       </form>
     </Paper>
   );
