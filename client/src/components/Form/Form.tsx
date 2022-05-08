@@ -23,7 +23,7 @@ const Form: FC<Props> = () : JSX.Element => {
     creator: '',
     title: '',
     message: '',
-    tags: '',
+    tags: [],
     selectedFile: 'some_file'
   });
 
@@ -82,7 +82,7 @@ const Form: FC<Props> = () : JSX.Element => {
           value={postData.tags}
           onChange={e => setPostData({
             ...postData,
-            tags: e.target.value
+            tags: [ ...postData.tags, e.target.value ]
           })}
         />
         <div className={classes.fileInput}>

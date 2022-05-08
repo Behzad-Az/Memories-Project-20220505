@@ -1,9 +1,11 @@
 export interface Post {
+  _id?: string;
   creator: string;
   title: string;
   message: string;
-  tags: string;
+  tags: string[];
   selectedFile: string;
+  createdAt?: Date;
 };
 
 type APIStatus = 'loading' | 'loaded' | 'failed' | 'initial';
