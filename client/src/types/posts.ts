@@ -6,6 +6,7 @@ export interface Post {
   tags: string[];
   selectedFile: string;
   createdAt?: Date;
+  likeCount?: number;
 };
 
 type APIStatus = 'loading' | 'loaded' | 'failed' | 'initial';
