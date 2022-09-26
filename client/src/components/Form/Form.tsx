@@ -5,7 +5,8 @@ import {
   Typography,
   Paper
 } from '@material-ui/core';
-// import FileBase from 'react-file-base64';
+import FileBase from 'react-file-base64';
+// const FileBase = require('react-file-base64');
 
 import useStyles from './styles';
 import { createPost } from '../../store/actions/posts';
@@ -30,7 +31,6 @@ const Form: FC<Props> = () : JSX.Element => {
   const handleSubmit = (event: React.SyntheticEvent) : void => {
     event.preventDefault();
     dispatch(createPost(postData));
-
   };
 
   const handleClear = () : void => {
@@ -86,11 +86,11 @@ const Form: FC<Props> = () : JSX.Element => {
           })}
         />
         <div className={classes.fileInput}>
-          {/* <FileBase
+          <FileBase
             type='file'
             multiple={false}
             onDone={(output: any) => setPostData({ ...postData, selectedFile: output.base64 })}
-          /> */}
+          />
         </div>
         <Button 
           className={classes.buttonSubmit}

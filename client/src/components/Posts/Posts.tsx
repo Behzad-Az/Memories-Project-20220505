@@ -32,6 +32,7 @@ const Posts: FC<Props> = () : JSX.Element => {
             xs={12}
             sm={6}
           >
+            {/* <p>{post._id}</p> */}
             <Post post={post} />
           </Grid>
         ))

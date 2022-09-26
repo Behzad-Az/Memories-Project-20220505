@@ -17,7 +17,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 app.use('/posts', postRoutes);
 
-const CONNECTION_URL = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.p0cwo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const CONNECTION_URL = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@cluster0.xejzknd.mongodb.net/?retryWrites=true&w=majority`
+
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
