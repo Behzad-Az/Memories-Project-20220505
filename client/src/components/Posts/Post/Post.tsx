@@ -13,7 +13,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from '../../../store/store';
-import { deletePost } from '../../../store/actions/posts';
+import { deletePost, likePost } from '../../../store/actions/posts';
 import { Post as PostType } from '../../../types/posts';
 
 import useStyles from './styles';
@@ -69,7 +69,7 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       </CardContent>
       
       <CardActions className={classes.cardActions}>
-        <Button size='small' color='primary' onClick={() => {}}>
+        <Button size='small' color='primary' onClick={() => dispatch(likePost(post))}>
           <ThumbUpAltIcon fontSize='small' />
           Like
           { post.likeCount }

@@ -103,4 +103,14 @@ export const deletePost = (deletedPost: Post) => async (dispatch: any) => {
   catch (error) {
     console.log(error);
   }
-}
+};
+
+export const likePost = (likedPost: Post) => async (dispatch: any) => {
+  try {
+    const { data } = await api.likePost(likedPost);
+    dispatch(rewritePost(data));
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
