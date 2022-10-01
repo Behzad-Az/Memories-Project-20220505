@@ -106,7 +106,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
           value={postData.tags}
           onChange={e => setPostData({
             ...postData,
-            tags: [ ...postData.tags, e.target.value ]
+            tags: e.target.value.split(',')
           })}
         />
         <div className={classes.fileInput}>
