@@ -14,8 +14,8 @@ import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 
-// import logo from './logo.svg';
-// import './App.css';
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
   const [currentId, setCurrentId] = useState<string | null>(null);
@@ -34,7 +34,8 @@ function App() {
       </AppBar>
       <Grow in>
         <Container>
-          <Grid 
+          <Grid
+            className={classes.mainContainer}
             container
             style={{
               justifyContent: 'space-between',
