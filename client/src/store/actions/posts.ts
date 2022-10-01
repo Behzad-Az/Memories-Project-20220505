@@ -4,12 +4,36 @@ import { Posts, Post } from '../../types/posts';
 export const REWRITE_POSTS = 'REWRITE_POSTS';
 export const ADD_TO_POSTS = 'ADD_TO_POSTS';
 export const REWRITE_A_POST = 'REWRITE_A_POST';
-export const DELETE_A_POST = 'DELETE_A_POST';
+export const REMOVE_A_POST = 'REMOVE_A_POST';
 
 const rewritePosts = (newPosts: Posts) => (dispatch: any) : Promise<void> => {
   dispatch({
     type: REWRITE_POSTS,
     payload: newPosts
+  });
+  return Promise.resolve();
+};
+
+const addToPosts = (newPost: Post) => (dispatch: any) : Promise<void> => {
+  dispatch({
+    type: ADD_TO_POSTS,
+    payload: newPost
+  });
+  return Promise.resolve();
+};
+
+const rewriteAPost = (updatedPost: Post) => (dispatch: any) : Promise<void> => {
+  dispatch({
+    type: REWRITE_A_POST,
+    payload: updatedPost
+  });
+  return Promise.resolve();
+};
+
+const removeAPost = (deletedPost: Post) => (dispatch: any) : Promise<void> => {
+  dispatch({
+    type: REMOVE_A_POST,
+    payload: deletedPost
   });
   return Promise.resolve();
 };
@@ -46,30 +70,6 @@ export const fetchPosts = () => async (dispatch: any) => {
   }
 };
 
-const addToPosts = (newPost: Post) => (dispatch: any) : Promise<void> => {
-  dispatch({
-    type: ADD_TO_POSTS,
-    payload: newPost
-  });
-  return Promise.resolve();
-};
-
-const rewritePost = (updatedPost: Post) => (dispatch: any) : Promise<void> => {
-  dispatch({
-    type: REWRITE_A_POST,
-    payload: updatedPost
-  });
-  return Promise.resolve();
-};
-
-const removePost = (deletedPost: Post) => (dispatch: any) : Promise<void> => {
-  dispatch({
-    type: DELETE_A_POST,
-    payload: deletedPost
-  });
-  return Promise.resolve();
-};
-
 export const createPost = (newPost: Post) => async (dispatch: any) => {
   try {
     const { status, data } = await api.createPost(newPost);
@@ -88,7 +88,7 @@ export const createPost = (newPost: Post) => async (dispatch: any) => {
 export const updatePost = (id: string, updatedPost: Post) => async (dispatch: any) => {
   try {
     const { data } = await api.updatePost(id, updatedPost);
-    dispatch(rewritePost(data));
+    dispatch(rewriteAPost(data));
   }
   catch (error) {
     console.log(error);
@@ -98,7 +98,7 @@ export const updatePost = (id: string, updatedPost: Post) => async (dispatch: an
 export const deletePost = (deletedPost: Post) => async (dispatch: any) => {
   try {
     await api.deletePost(deletedPost);
-    dispatch(removePost(deletedPost));
+    dispatch(removeAPost(deletedPost));
   }
   catch (error) {
     console.log(error);
@@ -108,7 +108,7 @@ export const deletePost = (deletedPost: Post) => async (dispatch: any) => {
 export const likePost = (likedPost: Post) => async (dispatch: any) => {
   try {
     const { data } = await api.likePost(likedPost);
-    dispatch(rewritePost(data));
+    dispatch(rewriteAPost(data));
   }
   catch (error) {
     console.log(error);

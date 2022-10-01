@@ -1,4 +1,4 @@
-import { REWRITE_POSTS, ADD_TO_POSTS, REWRITE_A_POST, DELETE_A_POST } from '../actions/posts';
+import { REWRITE_POSTS, ADD_TO_POSTS, REWRITE_A_POST, REMOVE_A_POST } from '../actions/posts';
 import { Posts, Post } from '../../types/posts';
 
 const initialState: Posts = {
@@ -34,7 +34,7 @@ export default function reducer(prevState: Posts = initialState, action: { type:
       return addToPosts(prevState, action.payload);
     case REWRITE_A_POST:
       return updatePost(prevState, action.payload);
-    case DELETE_A_POST:
+    case REMOVE_A_POST:
       return deletePost(prevState, action.payload);
     default:
       return prevState;

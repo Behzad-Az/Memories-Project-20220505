@@ -53,7 +53,7 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       <div className={classes.details}>
         <Typography variant='body2' color='textSecondary'>
           {
-            post.tags.map(tag => `#${tag} `)
+            post.tags.map(tag => `#${tag.trim()} `)
           }
         </Typography>
       </div>
@@ -63,7 +63,7 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       </Typography>
       
       <CardContent>
-        <Typography variant='h5' gutterBottom>
+        <Typography variant='body2' color='textSecondary' component={'p'}>
           { post.message }
         </Typography>
       </CardContent>
@@ -71,7 +71,7 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       <CardActions className={classes.cardActions}>
         <Button size='small' color='primary' onClick={() => dispatch(likePost(post))}>
           <ThumbUpAltIcon fontSize='small' />
-          Like
+          &nbsp;Like&nbsp;
           { post.likeCount }
         </Button>
         <Button size='small' color='primary' onClick={() => dispatch(deletePost(post))}>
