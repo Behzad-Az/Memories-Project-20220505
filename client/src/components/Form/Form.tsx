@@ -6,7 +6,6 @@ import {
   Paper
 } from '@material-ui/core';
 import FileBase from 'react-file-base64';
-// const FileBase = require('react-file-base64');
 
 import useStyles from './styles';
 import { createPost } from '../../store/actions/posts';
