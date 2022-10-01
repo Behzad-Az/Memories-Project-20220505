@@ -1,5 +1,5 @@
 export interface Post {
-  _id?: string;
+  _id: string | null;
   creator: string;
   title: string;
   message: string;

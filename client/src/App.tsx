@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   AppBar,
@@ -18,12 +18,13 @@ import useStyles from './styles';
 // import './App.css';
 
 function App() {
+  const [currentId, setCurrentId] = useState<string | null>(null);
   const classes = useStyles();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchPosts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container maxWidth='lg'>
@@ -42,10 +43,10 @@ function App() {
             spacing={3}
           >
             <Grid item xs={12} sm={7}>
-              <Posts />
+              <Posts setCurrentId={setCurrentId} />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
         </Container>

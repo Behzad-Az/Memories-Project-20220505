@@ -3,6 +3,7 @@ import { Posts, Post } from '../../types/posts';
 
 export const REWRITE_POSTS = 'REWRITE_POSTS';
 export const ADD_TO_POSTS = 'ADD_TO_POSTS';
+export const UPDATE_A_POST = 'UPDATE_A_POST';
 
 const rewritePosts = (newPosts: Posts) => (dispatch: any) : Promise<void> => {
   dispatch({
@@ -56,7 +57,7 @@ export const createPost = (newPost: Post) => async (dispatch: any) => {
   try {
     const { status, data } = await api.createPost(newPost);
     if (status === 200) {
-      dispatch(addToPosts(newPost));
+      dispatch(addToPosts(data));
     }
     else {
       throw `Server returned unexpected response structure. Status ${status}`;
@@ -66,3 +67,16 @@ export const createPost = (newPost: Post) => async (dispatch: any) => {
     console.log(error);
   }
 };
+
+export const updatePost = (id: string, updatedPost: Post) => async (dispatch:any) => {
+  try {
+    const { data } = await api.updatePost(id, updatedPost);
+    dispatch({
+      type: UPDATE_A_POST,
+      payload: data
+    })
+  }
+  catch (error) {
+    console.log(error);
+  }
+}

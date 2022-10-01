@@ -8,18 +8,22 @@ import {
 import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
-import { createPost } from '../../store/actions/posts';
+import { createPost, updatePost } from '../../store/actions/posts';
 import { useAppDispatch } from '../../store/store';
 import { Post } from '../../types/posts';
 
-interface Props {};
+interface Props {
+  currentId: string | null;
+  setCurrentId: React.Dispatch<React.SetStateAction<string | null>>;
+};
 
 type FormData = Post;
 
-const Form: FC<Props> = () : JSX.Element => {
+const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const [postData, setPostData] = useState<FormData>({
+    _id: null,
     creator: '',
     title: '',
     message: '',
@@ -29,7 +33,12 @@ const Form: FC<Props> = () : JSX.Element => {
 
   const handleSubmit = (event: React.SyntheticEvent) : void => {
     event.preventDefault();
-    dispatch(createPost(postData));
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    }
+    else {
+      dispatch(createPost(postData));
+    }
   };
 
   const handleClear = () : void => {

@@ -19,9 +19,10 @@ import useStyles from './styles';
 
 interface Props {
   post: PostType;
+  setCurrentId: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const Post: FC<Props> = ({ post }) : JSX.Element => {
+const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -38,7 +39,10 @@ const Post: FC<Props> = ({ post }) : JSX.Element => {
       </div>
 
       <div className={classes.overlay2}>
-        <Button style={{color: 'white'}} size='small' onClick={() => {}}>
+        <Button 
+          style={{color: 'white'}} size='small' 
+          onClick={() => setCurrentId(post._id)}
+        >
           <MoreHorizIcon fontSize='default' />
         </Button>
       </div>
