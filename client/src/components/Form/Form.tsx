@@ -7,12 +7,10 @@ import {
 } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 
-import { useAppSelector } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import useStyles from './styles';
 import { createPost, updatePost } from '../../store/actions/posts';
-import { useAppDispatch } from '../../store/store';
 import { Post } from '../../types/posts';
-import { clear } from 'console';
 
 interface Props {
   currentId: string | null;

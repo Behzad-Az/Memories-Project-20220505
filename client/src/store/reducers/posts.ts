@@ -1,4 +1,4 @@
-import { REWRITE_POSTS, ADD_TO_POSTS, UPDATE_A_POST } from '../actions/posts';
+import { REWRITE_POSTS, ADD_TO_POSTS, REWRITE_A_POST, DELETE_A_POST } from '../actions/posts';
 import { Posts, Post } from '../../types/posts';
 
 const initialState: Posts = {
@@ -18,7 +18,13 @@ const updatePost = (prevState: Posts, updatedPost: Post) : Posts => {
   const newState = { ...prevState };
   newState.content = newState.content.map(post => post._id === updatedPost._id ? updatedPost : post);
   return newState;
-}
+};
+
+const deletePost = (prevState: Posts, deletedPost: Post) : Posts => {
+  const newState = { ...prevState };
+  newState.content = newState.content.filter(post => post._id !== deletedPost._id);
+  return newState;
+};
 
 export default function reducer(prevState: Posts = initialState, action: { type: string; payload: any; }) : Posts {
   switch (action.type) {
@@ -26,8 +32,10 @@ export default function reducer(prevState: Posts = initialState, action: { type:
       return action.payload;
     case ADD_TO_POSTS:
       return addToPosts(prevState, action.payload);
-    case UPDATE_A_POST:
+    case REWRITE_A_POST:
       return updatePost(prevState, action.payload);
+    case DELETE_A_POST:
+      return deletePost(prevState, action.payload);
     default:
       return prevState;
   };

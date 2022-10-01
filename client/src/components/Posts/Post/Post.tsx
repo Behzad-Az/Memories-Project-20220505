@@ -12,7 +12,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 
-
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { deletePost } from '../../../store/actions/posts';
 import { Post as PostType } from '../../../types/posts';
 
 import useStyles from './styles';
@@ -24,6 +25,8 @@ interface Props {
 
 const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
+
   return (
     <Card className={classes.card}>
 
@@ -71,7 +74,7 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
           Like
           { post.likeCount }
         </Button>
-        <Button size='small' color='primary' onClick={() => {}}>
+        <Button size='small' color='primary' onClick={() => dispatch(deletePost(post))}>
           <DeleteIcon fontSize='small' />
           Delete
         </Button>
