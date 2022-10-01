@@ -53,6 +53,14 @@ const addToPosts = (newPost: Post) => (dispatch: any) : Promise<void> => {
   return Promise.resolve();
 };
 
+const rewritePost = (updatedPost: Post) => (dispatch: any) : Promise<void> => {
+  dispatch({
+    type: UPDATE_A_POST,
+    payload: updatedPost
+  });
+  return Promise.resolve();
+};
+
 export const createPost = (newPost: Post) => async (dispatch: any) => {
   try {
     const { status, data } = await api.createPost(newPost);
@@ -71,10 +79,7 @@ export const createPost = (newPost: Post) => async (dispatch: any) => {
 export const updatePost = (id: string, updatedPost: Post) => async (dispatch:any) => {
   try {
     const { data } = await api.updatePost(id, updatedPost);
-    dispatch({
-      type: UPDATE_A_POST,
-      payload: data
-    })
+    dispatch(rewritePost(data));
   }
   catch (error) {
     console.log(error);

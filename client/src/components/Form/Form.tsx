@@ -1,4 +1,4 @@
-import React, { FC, FormEventHandler, ReactEventHandler, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import {
   TextField,
   Button,
@@ -7,10 +7,12 @@ import {
 } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 
+import { useAppSelector } from '../../store/store';
 import useStyles from './styles';
 import { createPost, updatePost } from '../../store/actions/posts';
 import { useAppDispatch } from '../../store/store';
 import { Post } from '../../types/posts';
+import { clear } from 'console';
 
 interface Props {
   currentId: string | null;
@@ -22,6 +24,9 @@ type FormData = Post;
 const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
+
+  const post = useAppSelector(state => currentId ? state.posts.content.find(post => post._id === currentId) : null);
+
   const [postData, setPostData] = useState<FormData>({
     _id: null,
     creator: '',
@@ -31,6 +36,10 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
     selectedFile: 'some_file'
   });
 
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post])
+
   const handleSubmit = (event: React.SyntheticEvent) : void => {
     event.preventDefault();
     if (currentId) {
@@ -39,16 +48,25 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
     else {
       dispatch(createPost(postData));
     }
+    handleClear();
   };
 
   const handleClear = () : void => {
-
+    setCurrentId(null);
+    setPostData({
+      _id: null,
+      creator: '',
+      title: '',
+      message: '',
+      tags: [],
+      selectedFile: 'some_file'
+    });
   };
 
   return (
     <Paper className={classes.paper}>
       <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
-        <Typography variant='h6'>Creating a Memory</Typography>
+        <Typography variant='h6'>{ currentId ? 'Editing' : 'Creating' } a Memory</Typography>
         <TextField
           name='creator'
           variant='outlined'

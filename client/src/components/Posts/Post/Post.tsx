@@ -43,7 +43,7 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
           style={{color: 'white'}} size='small' 
           onClick={() => setCurrentId(post._id)}
         >
-          <MoreHorizIcon fontSize='default' />
+          <MoreHorizIcon fontSize='medium' />
         </Button>
       </div>
 
@@ -54,9 +54,13 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
           }
         </Typography>
       </div>
+
+      <Typography className={classes.title} variant='h5' gutterBottom>
+        { post.title }
+      </Typography>
       
       <CardContent>
-        <Typography className={classes.title} variant='h5' gutterBottom>
+        <Typography variant='h5' gutterBottom>
           { post.message }
         </Typography>
       </CardContent>
