@@ -23,8 +23,8 @@ export default makeStyles({
   },
   overlay: {
     position: 'absolute',
-    top: '20px',
-    left: '20px',
+    top: '340px',
+    left: '15px',
     color: 'white',
   },
   overlay2: {
@@ -39,10 +39,14 @@ export default makeStyles({
   details: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '20px',
+    margin: '10px 15px',
   },
-  title: {
-    padding: '0 16px',
+  name: {
+    padding: '5px 15px 0px 15px',
+    marginBottom: 0
+  },
+  location: {
+    padding: '0px 15px 5px 15px',
   },
   cardActions: {
     padding: '0 16px 8px 16px',

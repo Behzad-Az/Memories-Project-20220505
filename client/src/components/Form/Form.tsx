@@ -28,9 +28,9 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
 
   const [postData, setPostData] = useState<FormData>({
     _id: null,
-    creator: '',
-    title: '',
-    message: '',
+    name: '',
+    location: '',
+    description: '',
     tags: [],
     selectedFile: 'some_file'
   });
@@ -55,9 +55,9 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
     setCurrentId(null);
     setPostData({
       _id: null,
-      creator: '',
-      title: '',
-      message: '',
+      name: '',
+      location: '',
+      description: '',
       tags: [],
       selectedFile: 'some_file'
     });
@@ -68,37 +68,37 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
       <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
         <Typography variant='h6'>{ currentId ? 'Editing' : 'Reporting' } an #Aghazadeh</Typography>
         <TextField
-          name='creator'
+          name='name'
           variant='outlined'
           label='Name'
           fullWidth
-          value={postData.creator}
+          value={postData.name}
           onChange={e => setPostData({
             ...postData,
-            creator: e.target.value
+            name: e.target.value
           })}
         />
         <TextField
-          name='title'
+          name='location'
           variant='outlined'
           label='Location'
           fullWidth
-          value={postData.title}
+          value={postData.location}
           onChange={e => setPostData({
             ...postData,
-            title: e.target.value
+            location: e.target.value
           })}
         />
         <TextField
-          name='message'
+          name='description'
           variant='outlined'
           label='Description'
           multiline
           fullWidth
-          value={postData.message}
+          value={postData.description}
           onChange={e => setPostData({
             ...postData,
-            message: e.target.value
+            description: e.target.value
           })}
         />
         <TextField

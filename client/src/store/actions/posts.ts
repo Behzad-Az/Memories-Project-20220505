@@ -75,10 +75,10 @@ export const fetchPosts = () => async (dispatch: any) => {
       lastFetched: Date.now(),
       apiStatus: 'failed',
       showModal: false,
-      error: error.message,
+      error: error,
       content: []
     }));
-    console.log(error.message);
+    console.log(error);
   }
 };
 

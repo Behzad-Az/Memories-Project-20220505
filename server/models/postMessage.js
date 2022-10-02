@@ -1,12 +1,16 @@
 import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
-  title: String,
-  message: String,
-  creator: String,
+  location: String,
+  description: String,
+  name: String,
   tags: [String],
   selectedFile: String,
-  likeCount: {
+  cleanCount: {
+    type: Number,
+    default: 0
+  },
+  crookCount: {
     type: Number,
     default: 0
   },
@@ -16,6 +20,6 @@ const postSchema = mongoose.Schema({
   }
 });
 
-const PostMessage = mongoose.model('PostMessage', postSchema);
+const PostMessage = mongoose.model('aghazadeh', postSchema);
 
 export default PostMessage;
