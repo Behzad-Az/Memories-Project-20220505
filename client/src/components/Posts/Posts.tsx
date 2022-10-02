@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Grid, CircularProgress } from '@material-ui/core';
+import { Grid, CircularProgress, Box } from '@material-ui/core';
 
 import { useAppSelector } from '../../store/store';
 import Post from './Post/Post';
@@ -18,7 +18,7 @@ const Posts: FC<Props> = ({ setCurrentId }) : JSX.Element => {
   }
 
   return (
-    <Grid 
+    <Grid
       className={classes.mainContainer}
       container
       style={{
@@ -32,7 +32,7 @@ const Posts: FC<Props> = ({ setCurrentId }) : JSX.Element => {
             key={post._id}
             item
             xs={12}
-            sm={6}
+            // sm={6}
           >
             <Post post={post} setCurrentId={setCurrentId} />
           </Grid>

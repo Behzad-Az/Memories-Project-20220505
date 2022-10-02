@@ -4,12 +4,16 @@ import {
   AppBar,
   Typography,
   Grow,
-  Grid
+  Grid,
+  Modal,
+  Box,
+  Hidden
 } from '@material-ui/core';
 
 import { useAppDispatch } from './store/store';
 import { fetchPosts } from './store/actions/posts';
 import Posts from './components/Posts/Posts';
+import LeftSideBar from './components/SideBanners/LeftSideBar';
 import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
@@ -28,6 +32,7 @@ function App() {
 
   return (
     <Container maxWidth='lg'>
+
       <AppBar className={classes.appBar} position='static' color='inherit'>
         <Typography 
           className={classes.heading} 
@@ -39,24 +44,24 @@ function App() {
         </Typography>
         {/* <img className={classes.image} src={memories} alt='memories' height='60' /> */}
       </AppBar>
+
       <Grow in>
         <Container>
-          <Grid
-            className={classes.mainContainer}
-            container
-            style={{
-              justifyContent: 'space-between',
-              alignItems: 'stretch'
-            }}
-            spacing={3}
-          >
-            <Grid item xs={12} sm={7}>
+          <Grid container spacing={2} className={classes.mainContainer}>
+            
+            <LeftSideBar />
+            
+            <Grid item xs={12} sm={10} md={8} lg={6}>
               <Posts setCurrentId={setCurrentId} />
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
+
+            <Grid item xs={12} sm={1} md={2} lg={3}>
+              <Box border={1}>xs=2</Box>
             </Grid>
+
           </Grid>
+ 
+          
         </Container>
       </Grow>
     </Container>
@@ -64,3 +69,27 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+{/* <Modal
+  open={true}
+  onClose={() => null}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+  style={{
+    justifyContent: 'center',
+    alignContent: 'center',
+    
+  }}
+>
+  <Grid 
+    item 
+    xs={12} 
+    sm={4}
+  >
+    <Form currentId={currentId} setCurrentId={setCurrentId} />
+  </Grid>
+</Modal> */}

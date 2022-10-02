@@ -5,6 +5,7 @@ import {
   Typography,
   Paper
 } from '@material-ui/core';
+import { InputOutlined } from '@material-ui/icons';
 import FileBase from 'react-file-base64';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
@@ -81,6 +82,9 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
           variant='outlined'
           label='Title'
           fullWidth
+          InputProps={{
+            startAdornment: <InputOutlined />,
+          }}
           value={postData.title}
           onChange={e => setPostData({
             ...postData,
