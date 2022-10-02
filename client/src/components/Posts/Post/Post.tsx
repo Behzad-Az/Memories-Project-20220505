@@ -37,10 +37,6 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
         image={post.selectedFile}
         title={post.location}
       />
-      
-      <div className={classes.overlay}>
-        <Typography variant='body2'>Reported {moment(post.createdAt).fromNow()}</Typography>
-      </div>
 
       <Typography className={classes.name} variant='h4' gutterBottom>
         { post.name }
@@ -48,6 +44,9 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
 
       <Typography className={classes.location} variant='body1'>
         <Place fontSize='small' />from { post.location }
+      </Typography>
+      <Typography variant='caption' color='textSecondary' className={classes.location}>
+        Reported {moment(post.createdAt).fromNow()}
       </Typography>
 
       <CardContent>

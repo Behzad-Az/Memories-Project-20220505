@@ -43,7 +43,7 @@ const RightSideBar: FC<Props> = () : JSX.Element => {
           fullWidth
           onClick={() => dispatch(toggleFormModal(true))}
         >
-          + Report #Aghazadeh Here
+          + Report #Aghazadehs Here
         </Button>
       </Box>
     </Grid>
