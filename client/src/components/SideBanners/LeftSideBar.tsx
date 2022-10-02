@@ -67,7 +67,7 @@ const LeftSideBar: FC<Props> = () : JSX.Element => {
         {
           hashtags.map((hashtag, index) => {
             return (
-              <Typography align='center' variant='h6' style={{ marginBottom: hashtag.marginBottom, color: hashtag.color }}>
+              <Typography key={index} align='center' variant='h6' style={{ marginBottom: hashtag.marginBottom, color: hashtag.color }}>
                 #{ hashtag.text }
               </Typography>
             )

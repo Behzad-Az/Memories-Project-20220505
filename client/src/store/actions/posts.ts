@@ -117,9 +117,19 @@ export const deletePost = (deletedPost: Post) => async (dispatch: any) => {
   }
 };
 
-export const likePost = (likedPost: Post) => async (dispatch: any) => {
+export const incrementCrookCount = (selectedPost: Post) => async (dispatch: any) => {
   try {
-    const { data } = await api.likePost(likedPost);
+    const { data } = await api.incrementCrookCount(selectedPost);
+    dispatch(rewriteAPost(data));
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
+
+export const incrementCleanCount = (selectedPost: Post) => async (dispatch: any) => {
+  try {
+    const { data } = await api.incrementCleanCount(selectedPost);
     dispatch(rewriteAPost(data));
   }
   catch (error) {

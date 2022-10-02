@@ -13,4 +13,6 @@ export const updatePost = (id: string, updatedPost: Post) => axios.patch(`${url}
 
 export const deletePost = (deletedPost: Post) => axios.delete(`${url}/${deletedPost._id}`);
 
-export const likePost = (likedPost: Post) => axios.patch(`${url}/${likedPost._id}/likePost`);
+export const incrementCrookCount = (selectedPost: Post) => axios.patch(`${url}/${selectedPost._id}/crookCount`);
+
+export const incrementCleanCount = (selectedPost: Post) => axios.patch(`${url}/${selectedPost._id}/cleanCount`);

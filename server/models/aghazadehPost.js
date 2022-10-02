@@ -20,6 +20,6 @@ const postSchema = mongoose.Schema({
   }
 });
 
-const PostMessage = mongoose.model('aghazadeh', postSchema);
+const AghazadehPost = mongoose.model('aghazadeh', postSchema);
 
-export default PostMessage;
+export default AghazadehPost;

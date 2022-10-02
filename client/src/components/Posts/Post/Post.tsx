@@ -11,13 +11,11 @@ import {
 } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import { Place, DeleteOutline, MoreHoriz } from '@material-ui/icons';
+import { Place } from '@material-ui/icons';
 import moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from '../../../store/store';
-import { deletePost, likePost } from '../../../store/actions/posts';
+import { incrementCrookCount, incrementCleanCount } from '../../../store/actions/posts';
 import { Post as PostType } from '../../../types/posts';
 
 import useStyles from './styles';
@@ -43,12 +41,6 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       <div className={classes.overlay}>
         <Typography variant='body2'>Reported {moment(post.createdAt).fromNow()}</Typography>
       </div>
-      
-      {/* <div className={classes.details}>
-        <Typography variant='body2' color='textSecondary'>
-          Reported { moment(post.createdAt).fromNow() }
-        </Typography>
-      </div> */}
 
       <Typography className={classes.name} variant='h4' gutterBottom>
         { post.name }
@@ -74,12 +66,12 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       
       <CardActions className={classes.cardActions}>
 
-        <Button size='small' color='primary' onClick={() => dispatch(likePost(post))}>
+        <Button size='small' color='primary' onClick={() => dispatch(incrementCrookCount(post))}>
           { post.crookCount }&nbsp;<ThumbDownAltIcon fontSize='small' />&nbsp;He/she is a crook.&nbsp;
         </Button>
 
-        <Button size='small' color='primary' onClick={() => dispatch(likePost(post))}>
-          { post.crookCount }&nbsp;<ThumbUpAltIcon fontSize='small' />&nbsp;He/she is clean.&nbsp;
+        <Button size='small' color='primary' onClick={() => dispatch(incrementCleanCount(post))}>
+          { post.cleanCount }&nbsp;<ThumbUpAltIcon fontSize='small' />&nbsp;He/she is clean.&nbsp;
         </Button>
 
       </CardActions>
