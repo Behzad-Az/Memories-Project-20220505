@@ -56,6 +56,10 @@ function App() {
 
         <Container>
 
+        <Typography align='center' variant='h5' style={{ color: 'white', marginBottom: 15 }}>
+          Vancouver is no place for dirty Iranian money!
+        </Typography>
+
           <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
             Our mission is to expose those who have amassed personal wealth through rogue connections with corrupt Iranian officials at the expense of the Iranian public. Why should these people live freely and comfortably around the globe while the regime they helped enable imposes tyrany and economic hardship on its own people inside Iran.
           </Typography>

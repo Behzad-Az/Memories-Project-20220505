@@ -43,11 +43,8 @@ const RightSideBar: FC<Props> = () : JSX.Element => {
           fullWidth
           onClick={() => dispatch(toggleFormModal(true))}
         >
-          + Report a Dirty Connection
+          + Report #Aghazadeh Here
         </Button>
-        {/* <Typography align='center' variant='h6' style={{ color: 'white' }}>
-          Report an #Aghazade
-        </Typography> */}
       </Box>
     </Grid>
   );
