@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { Post } from '../types/posts';
 
+// const url = 'https://memories-project-20220505.herokuapp.com/posts';
 const url = 'http://localhost:5000/posts';
 
 export const fetchPosts = () => axios.get(url);
