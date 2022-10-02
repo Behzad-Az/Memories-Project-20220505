@@ -10,6 +10,7 @@ import {
   Paper
 } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
@@ -39,7 +40,7 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       />
       
       <div className={classes.overlay}>
-        <Typography variant='h6'>{post.creator}</Typography>
+        <Typography variant='h6'>{post.title}</Typography>
         <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
       </div>
 
@@ -61,7 +62,7 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       </div>
 
       <Typography className={classes.title} variant='h5' gutterBottom>
-        { post.title }
+        { post.creator }
       </Typography>
       
       <CardContent>
@@ -71,15 +72,22 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       </CardContent>
       
       <CardActions className={classes.cardActions}>
+
         <Button size='small' color='primary' onClick={() => dispatch(likePost(post))}>
-          <ThumbUpAltIcon fontSize='small' />
-          &nbsp;Like&nbsp;
-          { post.likeCount }
+          { post.likeCount }&nbsp;<ThumbDownAltIcon fontSize='small' />&nbsp;This person is a crook.&nbsp;
         </Button>
-        <Button size='small' color='primary' onClick={() => dispatch(deletePost(post))}>
+
+        <Button size='small' color='primary' onClick={() => dispatch(likePost(post))}>
+          { post.likeCount }&nbsp;<ThumbUpAltIcon fontSize='small' />&nbsp;This person is clean.&nbsp;
+        </Button>
+
+        
+
+        {/* <Button size='small' color='primary' onClick={() => dispatch(deletePost(post))}>
           <DeleteIcon fontSize='small' />
           Delete
-        </Button>
+        </Button> */}
+
       </CardActions>
 
     </Card>

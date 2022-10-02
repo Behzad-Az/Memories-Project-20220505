@@ -17,6 +17,7 @@ import LeftSideBar from './components/SideBanners/LeftSideBar';
 import RightSideBar from './components/SideBanners/RightSideBar';
 import Form from './components/Form/Form';
 import memories from './images/memories.png';
+import iran from './images/iran.png';
 import useStyles from './styles';
 
 import logo from './logo.svg';
@@ -35,7 +36,11 @@ function App() {
   return (
     <Container maxWidth='lg'>
 
-      <AppBar className={classes.appBar} position='static' color='inherit'>
+      <AppBar 
+        className={classes.appBar} 
+        position='static' 
+        color='inherit'
+      >
         <Typography 
           className={classes.heading} 
           variant='h2' 
@@ -44,12 +49,32 @@ function App() {
         >
           Report an #Aghazadeh
         </Typography>
-        {/* <img className={classes.image} src={memories} alt='memories' height='60' /> */}
+        <img className={classes.image} src={iran} alt='iran' height='60' />
       </AppBar>
 
       <Grow in>
 
         <Container>
+
+          <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
+            Our mission is to expose those who have amassed personal wealth through rogue connections with corrupt Iranian officials at the expense of the Iranian public. Why should these people live freely and comfortably around the globe while the regime they helped enable imposes tyrany and economic hardship on its own people inside Iran.
+          </Typography>
+
+          <Typography align='center' variant='subtitle1' style={{ color: 'white' }}>
+            We scrape Twitter and Instagram, and save reported #aghazades here forever and for everyone to see.
+          </Typography>
+
+          <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
+            If you know an #aghazade, please report them here.
+          </Typography>
+
+          <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
+            Is this legal? Well, is enabling a murderous regime legal?
+          </Typography>
+
+          {/* <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
+            Search functionality coming soon.
+          </Typography> */}
 
           <Grid container spacing={2} className={classes.mainContainer}>
             

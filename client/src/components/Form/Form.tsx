@@ -66,11 +66,11 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
   return (
     <Paper className={classes.paper}>
       <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
-        <Typography variant='h6'>{ currentId ? 'Editing' : 'Creating' } a Memory</Typography>
+        <Typography variant='h6'>{ currentId ? 'Editing' : 'Reporting' } an #Aghazadeh</Typography>
         <TextField
           name='creator'
           variant='outlined'
-          label='Creator'
+          label='Name'
           fullWidth
           value={postData.creator}
           onChange={e => setPostData({
@@ -81,7 +81,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
         <TextField
           name='title'
           variant='outlined'
-          label='Title'
+          label='Location'
           fullWidth
           value={postData.title}
           onChange={e => setPostData({
@@ -92,7 +92,8 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
         <TextField
           name='message'
           variant='outlined'
-          label='Message'
+          label='Description'
+          multiline
           fullWidth
           value={postData.message}
           onChange={e => setPostData({
