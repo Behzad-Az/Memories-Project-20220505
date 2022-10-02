@@ -14,7 +14,7 @@ const LeftSideBar: FC<Props> = () : JSX.Element => {
   const hashtags = [
     {
       color: 'green',
-      text: 'MahsaAminiqwasdjasdkjasldjalsdjal',
+      text: 'MahsaAmini',
       marginBottom: 0
     },
     {

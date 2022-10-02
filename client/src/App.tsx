@@ -10,8 +10,8 @@ import {
   Hidden
 } from '@material-ui/core';
 
-import { useAppDispatch } from './store/store';
-import { fetchPosts } from './store/actions/posts';
+import { useAppDispatch, useAppSelector } from './store/store';
+import { fetchPosts, toggleFormModal } from './store/actions/posts';
 import Posts from './components/Posts/Posts';
 import LeftSideBar from './components/SideBanners/LeftSideBar';
 import RightSideBar from './components/SideBanners/RightSideBar';
@@ -26,6 +26,7 @@ function App() {
   const [currentId, setCurrentId] = useState<string | null>(null);
   const classes = useStyles();
   const dispatch = useAppDispatch();
+  const showModal = useAppSelector(state => state.posts.showModal);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -47,7 +48,9 @@ function App() {
       </AppBar>
 
       <Grow in>
+
         <Container>
+
           <Grid container spacing={2} className={classes.mainContainer}>
             
             <LeftSideBar />
@@ -58,37 +61,34 @@ function App() {
 
             <RightSideBar />
 
+            <Modal
+              open={showModal}
+              onClose={() => {
+                dispatch(toggleFormModal(false));
+              }}
+              aria-labelledby='modal-modal-title'
+              aria-describedby='modal-modal-description'
+              style={{display:'flex', alignItems:'center', justifyContent:'center'}}
+            >
+              <Grid 
+                item 
+                xs={10} 
+                sm={4}
+              >
+                <Form currentId={currentId} setCurrentId={setCurrentId} />
+              </Grid>
+            </Modal>
+
+
           </Grid>
  
           
         </Container>
       </Grow>
+
+
     </Container>
   );
 }
 
 export default App;
-
-
-
-
-
-{/* <Modal
-  open={true}
-  onClose={() => null}
-  aria-labelledby="modal-modal-title"
-  aria-describedby="modal-modal-description"
-  style={{
-    justifyContent: 'center',
-    alignContent: 'center',
-    
-  }}
->
-  <Grid 
-    item 
-    xs={12} 
-    sm={4}
-  >
-    <Form currentId={currentId} setCurrentId={setCurrentId} />
-  </Grid>
-</Modal> */}

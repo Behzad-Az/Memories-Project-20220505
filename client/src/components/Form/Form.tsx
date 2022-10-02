@@ -10,7 +10,7 @@ import FileBase from 'react-file-base64';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import useStyles from './styles';
-import { createPost, updatePost } from '../../store/actions/posts';
+import { createPost, toggleFormModal, updatePost } from '../../store/actions/posts';
 import { Post } from '../../types/posts';
 
 interface Props {
@@ -48,6 +48,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
       dispatch(createPost(postData));
     }
     handleClear();
+    dispatch(toggleFormModal(false));
   };
 
   const handleClear = () : void => {
@@ -82,9 +83,6 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
           variant='outlined'
           label='Title'
           fullWidth
-          InputProps={{
-            startAdornment: <InputOutlined />,
-          }}
           value={postData.title}
           onChange={e => setPostData({
             ...postData,

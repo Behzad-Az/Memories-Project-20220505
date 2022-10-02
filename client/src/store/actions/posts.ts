@@ -1,6 +1,7 @@
 import * as api from '../../api';
 import { Posts, Post } from '../../types/posts';
 
+export const TOGGLE_FORM_MODAL = 'TOGGLE_FORM_MODAL';
 export const REWRITE_POSTS = 'REWRITE_POSTS';
 export const ADD_TO_POSTS = 'ADD_TO_POSTS';
 export const REWRITE_A_POST = 'REWRITE_A_POST';
@@ -38,11 +39,20 @@ const removeAPost = (deletedPost: Post) => (dispatch: any) : Promise<void> => {
   return Promise.resolve();
 };
 
+export const toggleFormModal = (onOrOff: boolean) => (dispatch: any) : Promise<void> => {
+  dispatch({
+    type: TOGGLE_FORM_MODAL,
+    payload: onOrOff
+  });
+  return Promise.resolve();
+};
+
 export const fetchPosts = () => async (dispatch: any) => {
   try {
     dispatch(rewritePosts({ 
       lastFetched: Date.now(),
       apiStatus: 'loading',
+      showModal: false,
       error: '',
       content: []
     }));
@@ -51,6 +61,7 @@ export const fetchPosts = () => async (dispatch: any) => {
       dispatch(rewritePosts({ 
         lastFetched: Date.now(),
         apiStatus: 'loaded',
+        showModal: false,
         error: '',
         content: data
       }));
@@ -62,7 +73,8 @@ export const fetchPosts = () => async (dispatch: any) => {
   catch (error: any) {
     dispatch(rewritePosts({ 
       lastFetched: Date.now(),
-      apiStatus: 'failed', 
+      apiStatus: 'failed',
+      showModal: false,
       error: error.message,
       content: []
     }));

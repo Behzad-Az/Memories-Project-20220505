@@ -6,14 +6,17 @@ import {
   Button
 } from '@material-ui/core';
 
+import { useAppDispatch } from '../../store/store';
+import { toggleFormModal } from '../../store/actions/posts';
+
 interface Props {};
 
 const RightSideBar: FC<Props> = () : JSX.Element => {
+  const dispatch = useAppDispatch();
 
   return (
     <Grid item xs={12} sm={12} md={2} lg={3} style={{ display: 'flex', justifyContent: 'center' }}>
       <Box 
-        // position={{ xs: 'relative', sm: 'relative', md: 'fixed' }}
         overflow='hidden'
         sx={{
           position: {
@@ -38,8 +41,9 @@ const RightSideBar: FC<Props> = () : JSX.Element => {
           size='large'
           type='submit'
           fullWidth
+          onClick={() => dispatch(toggleFormModal(true))}
         >
-          Report an #Aghazade
+          + Report a Dirty Connection
         </Button>
         {/* <Typography align='center' variant='h6' style={{ color: 'white' }}>
           Report an #Aghazade
