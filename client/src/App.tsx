@@ -14,6 +14,7 @@ import { useAppDispatch } from './store/store';
 import { fetchPosts } from './store/actions/posts';
 import Posts from './components/Posts/Posts';
 import LeftSideBar from './components/SideBanners/LeftSideBar';
+import RightSideBar from './components/SideBanners/RightSideBar';
 import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
@@ -55,9 +56,7 @@ function App() {
               <Posts setCurrentId={setCurrentId} />
             </Grid>
 
-            <Grid item xs={12} sm={1} md={2} lg={3}>
-              <Box border={1}>xs=2</Box>
-            </Grid>
+            <RightSideBar />
 
           </Grid>
  

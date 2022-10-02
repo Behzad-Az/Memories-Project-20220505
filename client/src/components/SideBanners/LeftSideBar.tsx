@@ -1,13 +1,8 @@
 import React, { FC } from 'react';
 import {
-  Container,
-  AppBar,
   Typography,
-  Grow,
   Grid,
-  Modal,
-  Box,
-  Hidden
+  Box
 } from '@material-ui/core';
 
 interface Props {};
@@ -19,7 +14,7 @@ const LeftSideBar: FC<Props> = () : JSX.Element => {
   const hashtags = [
     {
       color: 'green',
-      text: 'MahsaAmini',
+      text: 'MahsaAminiqwasdjasdkjasldjalsdjal',
       marginBottom: 0
     },
     {
@@ -47,14 +42,26 @@ const LeftSideBar: FC<Props> = () : JSX.Element => {
       text: 'Freedom',
       marginBottom: HASHTAG_SET_MARGIN_BTM
     }
-  ]
+  ];
 
   return (
     <Grid item xs={12} sm={12} md={2} lg={3} style={{ display: 'flex', justifyContent: 'center' }}>
       <Box 
-        position={{ xs: 'relative', sm: 'relative', md: 'fixed' }}
+        overflow='hidden'
         sx={{
-          top: { xs: '45%' }
+          position: {
+            xs: 'relative', 
+            sm: 'relative', 
+            md: 'fixed'
+          },
+          top: { 
+            xs: '45%' 
+          },
+          width: { 
+            xs: '50%',
+            sm: '50%',
+            md: 'calc(16.65% - 20px)'
+          }
         }}
       >
         {
