@@ -43,7 +43,7 @@ function App() {
       >
         <Typography 
           className={classes.heading} 
-          variant='h2' 
+          variant='h3' 
           align='center'
           color='textPrimary'
         >

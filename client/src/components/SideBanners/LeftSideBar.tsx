@@ -58,8 +58,8 @@ const LeftSideBar: FC<Props> = () : JSX.Element => {
             xs: '45%' 
           },
           width: { 
-            xs: '50%',
-            sm: '50%',
+            xs: '100%',
+            sm: '100%',
             md: 'calc(16.65% - 20px)'
           }
         }}
