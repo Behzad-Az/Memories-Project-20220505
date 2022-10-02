@@ -1,18 +1,20 @@
 export interface Post {
   _id: string | null;
-  creator: string;
-  title: string;
-  message: string;
+  name: string;
+  location: string;
+  description: string;
   tags: string[];
   selectedFile: string;
   createdAt?: Date;
-  likeCount?: number;
+  crookCount?: number;
+  cleanCount?: number;
 };
 
 type APIStatus = 'loading' | 'loaded' | 'failed' | 'initial';
 export interface Posts {
   lastFetched: number;
   apiStatus: APIStatus;
+  showModal: boolean;
   error: string;
   content: Post[];
 };

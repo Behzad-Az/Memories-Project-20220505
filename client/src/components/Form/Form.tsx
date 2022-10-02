@@ -10,7 +10,7 @@ import FileBase from 'react-file-base64';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import useStyles from './styles';
-import { createPost, updatePost } from '../../store/actions/posts';
+import { createPost, toggleFormModal, updatePost } from '../../store/actions/posts';
 import { Post } from '../../types/posts';
 
 interface Props {
@@ -28,9 +28,9 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
 
   const [postData, setPostData] = useState<FormData>({
     _id: null,
-    creator: '',
-    title: '',
-    message: '',
+    name: '',
+    location: '',
+    description: '',
     tags: [],
     selectedFile: 'some_file'
   });
@@ -48,15 +48,16 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
       dispatch(createPost(postData));
     }
     handleClear();
+    dispatch(toggleFormModal(false));
   };
 
   const handleClear = () : void => {
     setCurrentId(null);
     setPostData({
       _id: null,
-      creator: '',
-      title: '',
-      message: '',
+      name: '',
+      location: '',
+      description: '',
       tags: [],
       selectedFile: 'some_file'
     });
@@ -65,41 +66,39 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
   return (
     <Paper className={classes.paper}>
       <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
-        <Typography variant='h6'>{ currentId ? 'Editing' : 'Creating' } a Memory</Typography>
+        <Typography variant='h6'>{ currentId ? 'Editing' : 'Reporting' } an #Aghazadeh</Typography>
         <TextField
-          name='creator'
+          name='name'
           variant='outlined'
-          label='Creator'
+          label='Name'
           fullWidth
-          value={postData.creator}
+          value={postData.name}
           onChange={e => setPostData({
             ...postData,
-            creator: e.target.value
+            name: e.target.value
           })}
         />
         <TextField
-          name='title'
+          name='location'
           variant='outlined'
-          label='Title'
+          label='Location'
           fullWidth
-          InputProps={{
-            startAdornment: <InputOutlined />,
-          }}
-          value={postData.title}
+          value={postData.location}
           onChange={e => setPostData({
             ...postData,
-            title: e.target.value
+            location: e.target.value
           })}
         />
         <TextField
-          name='message'
+          name='description'
           variant='outlined'
-          label='Message'
+          label='Description'
+          multiline
           fullWidth
-          value={postData.message}
+          value={postData.description}
           onChange={e => setPostData({
             ...postData,
-            message: e.target.value
+            description: e.target.value
           })}
         />
         <TextField

@@ -10,12 +10,12 @@ import {
   Paper
 } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
+import { Place } from '@material-ui/icons';
 import moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from '../../../store/store';
-import { deletePost, likePost } from '../../../store/actions/posts';
+import { incrementCrookCount, incrementCleanCount } from '../../../store/actions/posts';
 import { Post as PostType } from '../../../types/posts';
 
 import useStyles from './styles';
@@ -35,22 +35,26 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       <CardMedia
         className={classes.media}
         image={post.selectedFile}
-        title={post.title}
+        title={post.location}
       />
       
       <div className={classes.overlay}>
-        <Typography variant='h6'>{post.creator}</Typography>
-        <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
+        <Typography variant='body2'>Reported {moment(post.createdAt).fromNow()}</Typography>
       </div>
 
-      <div className={classes.overlay2}>
-        <Button 
-          style={{color: 'white'}} size='small' 
-          onClick={() => setCurrentId(post._id)}
-        >
-          <MoreHorizIcon fontSize='medium' />
-        </Button>
-      </div>
+      <Typography className={classes.name} variant='h4' gutterBottom>
+        { post.name }
+      </Typography>
+
+      <Typography className={classes.location} variant='body1'>
+        <Place fontSize='small' />from { post.location }
+      </Typography>
+
+      <CardContent>
+        <Typography variant='body2' color='textSecondary' component={'p'}>
+          { post.description }
+        </Typography>
+      </CardContent>
 
       <div className={classes.details}>
         <Typography variant='body2' color='textSecondary'>
@@ -59,27 +63,17 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
           }
         </Typography>
       </div>
-
-      <Typography className={classes.title} variant='h5' gutterBottom>
-        { post.title }
-      </Typography>
-      
-      <CardContent>
-        <Typography variant='body2' color='textSecondary' component={'p'}>
-          { post.message }
-        </Typography>
-      </CardContent>
       
       <CardActions className={classes.cardActions}>
-        <Button size='small' color='primary' onClick={() => dispatch(likePost(post))}>
-          <ThumbUpAltIcon fontSize='small' />
-          &nbsp;Like&nbsp;
-          { post.likeCount }
+
+        <Button size='small' color='primary' onClick={() => dispatch(incrementCrookCount(post))}>
+          { post.crookCount }&nbsp;<ThumbDownAltIcon fontSize='small' />&nbsp;He/she is a crook.&nbsp;
         </Button>
-        <Button size='small' color='primary' onClick={() => dispatch(deletePost(post))}>
-          <DeleteIcon fontSize='small' />
-          Delete
+
+        <Button size='small' color='primary' onClick={() => dispatch(incrementCleanCount(post))}>
+          { post.cleanCount }&nbsp;<ThumbUpAltIcon fontSize='small' />&nbsp;He/she is clean.&nbsp;
         </Button>
+
       </CardActions>
 
     </Card>
