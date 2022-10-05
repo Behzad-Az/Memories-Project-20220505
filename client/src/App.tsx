@@ -5,9 +5,7 @@ import {
   Typography,
   Grow,
   Grid,
-  Modal,
-  Box,
-  Hidden
+  Modal
 } from '@material-ui/core';
 
 import { useAppDispatch, useAppSelector } from './store/store';
@@ -16,7 +14,6 @@ import Posts from './components/Posts/Posts';
 import LeftSideBar from './components/SideBanners/LeftSideBar';
 import RightSideBar from './components/SideBanners/RightSideBar';
 import Form from './components/Form/Form';
-import memories from './images/memories.png';
 import iran from './images/iran.png';
 import useStyles from './styles';
 
@@ -76,10 +73,6 @@ function App() {
             Is this legal? Well, is enabling a murderous regime legal?
           </Typography>
 
-          {/* <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
-            Search functionality coming soon.
-          </Typography> */}
-
           <Grid container spacing={2} className={classes.mainContainer}>
             
             <LeftSideBar />
@@ -102,7 +95,9 @@ function App() {
               <Grid 
                 item 
                 xs={10} 
-                sm={4}
+                sm={10}
+                md={8}
+                lg={6}
               >
                 <Form currentId={currentId} setCurrentId={setCurrentId} />
               </Grid>

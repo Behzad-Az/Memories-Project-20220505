@@ -3,9 +3,11 @@ import {
   TextField,
   Button,
   Typography,
-  Paper
+  Paper,
+  Checkbox,
+  FormGroup,
+  FormControlLabel
 } from '@material-ui/core';
-import { InputOutlined } from '@material-ui/icons';
 import FileBase from 'react-file-base64';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
@@ -35,9 +37,11 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
     selectedFile: 'some_file'
   });
 
+  const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
+
   useEffect(() => {
     if (post) setPostData(post);
-  }, [post])
+  }, [post]);
 
   const handleSubmit = (event: React.SyntheticEvent) : void => {
     event.preventDefault();
@@ -53,6 +57,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
 
   const handleClear = () : void => {
     setCurrentId(null);
+    setAgreedToTerms(false);
     setPostData({
       _id: null,
       name: '',
@@ -61,6 +66,10 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
       tags: [],
       selectedFile: 'some_file'
     });
+  };
+
+  const handleTermsCheckBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAgreedToTerms(event.target.checked);
   };
 
   return (
@@ -119,6 +128,19 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
             onDone={(output: any) => setPostData({ ...postData, selectedFile: output.base64 })}
           />
         </div>
+
+        <FormControlLabel
+          control={
+            <Checkbox
+              name='SomeName'
+              checked={agreedToTerms}
+              onChange={handleTermsCheckBoxChange}
+              color='primary'
+            />
+          }
+          label='I agree to the terms and conditions.'
+        />
+
         <Button 
           className={classes.buttonSubmit}
           variant='contained'
@@ -126,9 +148,12 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
           size='large'
           type='submit'
           fullWidth
+          disabled={!agreedToTerms}
         >
           Submit
         </Button>
+
+
         <Button 
           className={classes.buttonSubmit}
           variant='contained'
