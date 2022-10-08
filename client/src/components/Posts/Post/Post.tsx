@@ -20,10 +20,9 @@ import useStyles from './styles';
 
 interface Props {
   post: PostType;
-  setCurrentId: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
+const Post: FC<Props> = ({ post }) : JSX.Element => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
 

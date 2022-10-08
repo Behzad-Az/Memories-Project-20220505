@@ -13,9 +13,9 @@ import {
 import { Link } from 'react-router-dom';
 import FileBase from 'react-file-base64';
 
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppDispatch } from '../../store/store';
 import useStyles from './styles';
-import { createPost, toggleFormModal, updatePost } from '../../store/actions/posts';
+import { createPost } from '../../store/actions/posts';
 import { Post } from '../../types/posts';
 
 type FormData = Post;

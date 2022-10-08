@@ -5,11 +5,9 @@ import { useAppSelector } from '../../store/store';
 import Post from './Post/Post';
 import useStyles from './styles';
 
-interface Props {
-  setCurrentId: React.Dispatch<React.SetStateAction<string | null>>
-};
+interface Props {};
 
-const Posts: FC<Props> = ({ setCurrentId }) : JSX.Element => {
+const Posts: FC<Props> = () : JSX.Element => {
   const classes = useStyles();
   const posts = useAppSelector(state => state.posts);
 
@@ -34,7 +32,7 @@ const Posts: FC<Props> = ({ setCurrentId }) : JSX.Element => {
             xs={12}
             // sm={6}
           >
-            <Post post={post} setCurrentId={setCurrentId} />
+            <Post post={post} />
           </Grid>
         ))
       }

@@ -4,17 +4,15 @@ import {
   AppBar,
   Typography,
   Grow,
-  Grid,
-  Modal
+  Grid
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import { fetchPosts, toggleFormModal } from '../../store/actions/posts';
+import { fetchPosts } from '../../store/actions/posts';
 import Posts from '../../components/Posts/Posts';
 import LeftSideBar from '../../components/SideBanners/LeftSideBar';
 import RightSideBar from '../../components/SideBanners/RightSideBar';
-import Form from '../../components/Form/Form';
 import iran from '../../images/iran.png';
 import useStyles from '../../styles';
 
@@ -26,7 +24,6 @@ const HomePage: FC<Props> = () : JSX.Element => {
   const [currentId, setCurrentId] = useState<string | null>(null);
   const classes = useStyles();
   const dispatch = useAppDispatch();
-  const showModal = useAppSelector(state => state.posts.showModal);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -85,30 +82,10 @@ const HomePage: FC<Props> = () : JSX.Element => {
             <LeftSideBar />
             
             <Grid item xs={12} sm={10} md={8} lg={6}>
-              <Posts setCurrentId={setCurrentId} />
+              <Posts />
             </Grid>
 
             <RightSideBar />
-
-            <Modal
-              open={showModal}
-              onClose={() => {
-                dispatch(toggleFormModal(false));
-              }}
-              aria-labelledby='modal-modal-title'
-              aria-describedby='modal-modal-description'
-              style={{display:'flex', alignItems:'center', justifyContent:'center'}}
-            >
-              <Grid 
-                item 
-                xs={10} 
-                sm={10}
-                md={8}
-                lg={6}
-              >
-                <Form currentId={currentId} setCurrentId={setCurrentId} />
-              </Grid>
-            </Modal>
 
 
           </Grid>
