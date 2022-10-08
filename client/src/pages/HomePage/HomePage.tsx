@@ -7,7 +7,7 @@ import {
   Grid,
   Modal
 } from '@material-ui/core';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { fetchPosts, toggleFormModal } from '../../store/actions/posts';
@@ -40,7 +40,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
         position='static' 
         color='inherit'
       >
-        <NavLink to='/terms' exact>About</NavLink>
+
         <Typography 
           className={classes.heading} 
           variant='h3' 
@@ -52,6 +52,10 @@ const HomePage: FC<Props> = () : JSX.Element => {
         <img className={classes.image} src={iran} alt='iran' height='60' />
       </AppBar>
 
+      <Typography align='center' variant='subtitle2' style={{ color: 'white', marginBottom: 15 }}>
+        <Link to='/legal-faq' exact style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' exac style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' exact style={{ color: 'white' }}>Privacy Policy</Link>
+      </Typography>
+
       <Grow in>
 
         <Container>
@@ -61,7 +65,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
         </Typography>
 
           <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
-            Our mission is to expose those who have amassed personal wealth through rogue connections with corrupt Iranian officials at the expense of the Iranian public. Why should these people live freely and comfortably around the globe while the regime they helped enable imposes tyrany and economic hardship on its own people inside Iran.
+            Our mission is to expose those who have profited from the rogue Iranian regime at the expense of the Iranian public. Why should the regime enablers live freely and comfortably around the globe while Iranians inside Iran live under a tyrannical and corrupt regime.
           </Typography>
 
           <Typography align='center' variant='subtitle1' style={{ color: 'white' }}>
@@ -73,7 +77,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
           </Typography>
 
           <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
-            Is this legal? Well, is enabling a murderous regime legal?
+            Is this legal? Well, is enabling a murderous regime legal? Visit <Link to='/legal-faq' exact style={{ color: 'white' }}>Legal FAQ</Link> for more info. 
           </Typography>
 
           <Grid container spacing={2} className={classes.mainContainer}>
@@ -113,7 +117,10 @@ const HomePage: FC<Props> = () : JSX.Element => {
         </Container>
       </Grow>
 
-
+      <Typography align='center' variant='subtitle2' style={{ color: 'white', paddingTop: 30, paddingBottom: 30 }}>
+        <Link to='/legal-faq' exact style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' exac style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' exact style={{ color: 'white' }}>Privacy Policy</Link>
+      </Typography>
+      
     </Container>
   );
 }
