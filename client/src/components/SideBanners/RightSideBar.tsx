@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
 import {
-  Typography,
   Grid,
   Box,
   Button
 } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 import { useAppDispatch } from '../../store/store';
-import { toggleFormModal } from '../../store/actions/posts';
 
 interface Props {};
 
 const RightSideBar: FC<Props> = () : JSX.Element => {
-  const dispatch = useAppDispatch();
+  const navigate = useHistory();
 
   return (
     <Grid item xs={12} sm={12} md={2} lg={3} style={{ display: 'flex', justifyContent: 'center' }}>
@@ -41,7 +40,7 @@ const RightSideBar: FC<Props> = () : JSX.Element => {
           size='large'
           type='submit'
           fullWidth
-          onClick={() => dispatch(toggleFormModal(true))}
+          onClick={() => navigate.push('/report')}
         >
           + Report #Aghazadehs Here
         </Button>

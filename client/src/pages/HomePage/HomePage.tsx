@@ -61,11 +61,11 @@ const HomePage: FC<Props> = () : JSX.Element => {
         <Container>
 
         <Typography align='center' variant='h5' style={{ color: 'white', marginBottom: 15 }}>
-          Vancouver is no place for dirty Iranian money!
+          The world should have no place for dirty Iranian money!
         </Typography>
 
           <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
-            Our mission is to expose those who have profited from the rogue Iranian regime at the expense of the Iranian public. Why should the regime enablers live freely and comfortably around the globe while Iranians inside Iran live under a tyrannical and corrupt regime.
+            Our mission is to expose those who have profited from the rogue Iranian regime at the expense of the Iranian public. Why should the regime enablers live freely and comfortably around the globe while Iranians inside Iran suffer under a tyrannical and corrupt regime.
           </Typography>
 
           <Typography align='center' variant='subtitle1' style={{ color: 'white' }}>
