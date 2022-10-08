@@ -7,6 +7,7 @@ import {
   Grid,
   Modal
 } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { fetchPosts, toggleFormModal } from '../../store/actions/posts';
@@ -39,6 +40,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
         position='static' 
         color='inherit'
       >
+        <NavLink to='/terms' exact>About</NavLink>
         <Typography 
           className={classes.heading} 
           variant='h3' 
