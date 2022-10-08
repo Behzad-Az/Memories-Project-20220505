@@ -38,10 +38,11 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
     subjectLocation: '',
     description: '',
     tags: [],
-    selectedFile: 'some_file'
+    selectedFile: ''
   });
 
   const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     if (post) setPostData(post);
@@ -49,6 +50,12 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
 
   const handleSubmit = (event: React.SyntheticEvent) : void => {
     event.preventDefault();
+    if (!areInputsValid()) {
+      setErrorMessage('Invalid inputs');
+      setAgreedToTerms(false);
+      return;
+    }
+
     if (currentId) {
       dispatch(updatePost(currentId, postData));
     }
@@ -70,12 +77,48 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
       subjectLocation: '',
       description: '',
       tags: [],
-      selectedFile: 'some_file'
+      selectedFile: ''
     });
   };
 
   const handleTermsCheckBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAgreedToTerms(event.target.checked);
+  };
+
+  const areInputsValid = () : boolean | null => {
+    const validRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // const {
+    //   authorName,
+    //   authorEmail,
+    //   subjectName,
+    //   subjectLocation,
+    //   description,
+    //   tags,
+    //   selectedFile
+    // } = postData;
+    // if (authorName.length > 2) setErrorMessage('Invalid author name');
+    // if (postData.authorEmail.match(validRegex) ) setErrorMessage('Invalid author name');
+    console.log("i'm here 3:",
+      postData.authorName.length > 2,
+      postData.authorEmail.match(validRegex),
+      postData.subjectName.length > 3,
+      postData.subjectLocation.length > 3,
+      postData.description.length > 139,
+      postData.description.length < 501,
+      postData.tags.length > 0,
+      postData.selectedFile.length > 500
+    );
+
+    return (
+      postData.authorName.length > 2 &&
+      postData.authorEmail.match(validRegex) &&
+      postData.subjectName.length > 3 &&
+      postData.subjectLocation.length > 3 &&
+      postData.description.length > 139 &&
+      postData.description.length < 501 &&
+      postData.tags.length > 0 &&
+      postData.selectedFile.length > 500
+    );
   };
 
   return (
@@ -92,7 +135,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
         <Typography variant='caption'>
           <Link to='/legal-faq'>Why do we need this?</Link>
         </Typography>
-        <Divider component='line' style={{ width: '100%' }} />
+        <Divider style={{ width: '100%' }} />
         <Grid container spacing={2} className={classes.multiTextBoxPerLine}>
           <Grid item xs={6} sm={6} md={6} lg={6}>
             <TextField
@@ -103,7 +146,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
               value={postData.authorName}
               onChange={e => setPostData({
                 ...postData,
-                authorName: e.target.value
+                authorName: e.target.value.trim()
               })}
             />
           </Grid>
@@ -116,14 +159,17 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
               value={postData.authorEmail}
               onChange={e => setPostData({
                 ...postData,
-                authorEmail: e.target.value
+                authorEmail: e.target.value.trim()
               })}
             />
           </Grid>
         </Grid>
+        <Typography variant='caption'>
+          * Email format must be correct like example@example.com
+        </Typography>
 
         <Typography variant='subtitle2' style={{ paddingTop: 10 }}>About Your Subject</Typography>
-        <Divider component='line' style={{ width: '100%' }} />
+        <Divider style={{ width: '100%' }} />
         <Grid container spacing={2} className={classes.multiTextBoxPerLine}>
           <Grid item xs={6} sm={6} md={6} lg={6}>
             <TextField
@@ -134,7 +180,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
               value={postData.subjectName}
               onChange={e => setPostData({
                 ...postData,
-                subjectName: e.target.value
+                subjectName: e.target.value.trim()
               })}
             />
           </Grid>
@@ -147,7 +193,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
               value={postData.subjectLocation}
               onChange={e => setPostData({
                 ...postData,
-                subjectLocation: e.target.value
+                subjectLocation: e.target.value.trim()
               })}
             />
           </Grid>
@@ -156,13 +202,13 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
         <TextField
           name='description'
           variant='outlined'
-          label='Description'
+          label='Description (min. 140, max. 500 characters)'
           multiline
           fullWidth
           value={postData.description}
           onChange={e => setPostData({
             ...postData,
-            description: e.target.value
+            description: e.target.value.trim()
           })}
         />
         <TextField
@@ -177,7 +223,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
           })}
         />
 
-        <Typography variant='body2' style={{ paddingTop: 10 }}>Select photo</Typography>
+        <Typography variant='body2' style={{ paddingTop: 10 }}>Select photo (.png, .jpg, .jpeg)</Typography>
         <div className={classes.fileInput}>
           <FileBase
             type='file'
@@ -185,6 +231,10 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
             onDone={(output: any) => setPostData({ ...postData, selectedFile: output.base64 })}
           />
         </div>
+
+        <Typography variant='caption' align='center' style={{ width: '100%', color: 'red' }}>
+          { errorMessage }
+        </Typography>
         
         <FormControlLabel
           control={

@@ -12,9 +12,20 @@ export const getPosts = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  const post = req.body;
-  const newPost = new AghazadehPost(post);
   try {
+    const post = req.body;
+    const validRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!(
+      post.authorName.length > 2 &&
+      post.authorEmail.match(validRegex) &&
+      post.subjectName.length > 3 &&
+      post.subjectLocation.length > 3 &&
+      post.description.length > 139 &&
+      post.description.length < 501 &&
+      post.tags.length > 0 &&
+      post.selectedFile.length > 500
+    )) throw 'invalid inputs';
+    const newPost = new AghazadehPost(post);
     await newPost.save();
     res.status(200).json(newPost);
   }

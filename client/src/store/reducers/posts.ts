@@ -11,7 +11,7 @@ const initialState: Posts = {
 
 const addToPosts = (prevState: Posts, newPost: Post) : Posts => {
   const newState = { ...prevState };
-  newState.content = [ ...newState.content, newPost ];
+  newState.content = [ newPost, ...newState.content ];
   return newState;
 };
 
