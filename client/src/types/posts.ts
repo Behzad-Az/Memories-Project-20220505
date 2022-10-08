@@ -1,13 +1,16 @@
 export interface Post {
   _id: string | null;
-  name: string;
-  location: string;
+  authorName: string;
+  authorEmail: string;
+  subjectName: string;
+  subjectLocation: string;
   description: string;
   tags: string[];
   selectedFile: string;
   createdAt?: Date;
   crookCount?: number;
   cleanCount?: number;
+  authorIpAddress?: string;
 };
 
 type APIStatus = 'loading' | 'loaded' | 'failed' | 'initial';

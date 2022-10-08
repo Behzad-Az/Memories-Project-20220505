@@ -5,7 +5,6 @@ import {
   Typography,
   Paper,
   Checkbox,
-  FormGroup,
   FormControlLabel
 } from '@material-ui/core';
 import FileBase from 'react-file-base64';
@@ -30,8 +29,10 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
 
   const [postData, setPostData] = useState<FormData>({
     _id: null,
-    name: '',
-    location: '',
+    authorName: '',
+    authorEmail: '',
+    subjectName: '',
+    subjectLocation: '',
     description: '',
     tags: [],
     selectedFile: 'some_file'
@@ -60,8 +61,10 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
     setAgreedToTerms(false);
     setPostData({
       _id: null,
-      name: '',
-      location: '',
+      authorName: '',
+      authorEmail: '',
+      subjectName: '',
+      subjectLocation: '',
       description: '',
       tags: [],
       selectedFile: 'some_file'
@@ -76,26 +79,51 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
     <Paper className={classes.paper}>
       <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
         <Typography variant='h6'>{ currentId ? 'Editing' : 'Reporting' } an #Aghazadeh</Typography>
+        
         <TextField
-          name='name'
+          name='authorName'
           variant='outlined'
-          label='Name'
+          label='Your name'
           fullWidth
-          value={postData.name}
+          value={postData.authorName}
           onChange={e => setPostData({
             ...postData,
-            name: e.target.value
+            authorName: e.target.value
+          })}
+        />
+
+        <TextField
+          name='authorEmail'
+          variant='outlined'
+          label='Your email'
+          fullWidth
+          value={postData.authorEmail}
+          onChange={e => setPostData({
+            ...postData,
+            authorEmail: e.target.value
+          })}
+        />
+        
+        <TextField
+          name='subjectName'
+          variant='outlined'
+          label='Who is this about?'
+          fullWidth
+          value={postData.subjectName}
+          onChange={e => setPostData({
+            ...postData,
+            subjectName: e.target.value
           })}
         />
         <TextField
-          name='location'
+          name='subjectLocation'
           variant='outlined'
-          label='Location'
+          label='Where do they live?'
           fullWidth
-          value={postData.location}
+          value={postData.subjectLocation}
           onChange={e => setPostData({
             ...postData,
-            location: e.target.value
+            subjectLocation: e.target.value
           })}
         />
         <TextField

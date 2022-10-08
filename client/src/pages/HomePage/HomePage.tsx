@@ -53,7 +53,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
       </AppBar>
 
       <Typography align='center' variant='subtitle2' style={{ color: 'white', marginBottom: 15 }}>
-        <Link to='/legal-faq' exact style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' exac style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' exact style={{ color: 'white' }}>Privacy Policy</Link>
+        <Link to='/legal-faq' style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' style={{ color: 'white' }}>Privacy Policy</Link>
       </Typography>
 
       <Grow in>
@@ -77,7 +77,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
           </Typography>
 
           <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
-            Is this legal? Well, is enabling a murderous regime legal? Visit <Link to='/legal-faq' exact style={{ color: 'white' }}>Legal FAQ</Link> for more info. 
+            Is this legal? Well, is enabling a murderous regime legal? Visit <Link to='/legal-faq' style={{ color: 'white' }}>Legal FAQ</Link> for more info. 
           </Typography>
 
           <Grid container spacing={2} className={classes.mainContainer}>
@@ -118,7 +118,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
       </Grow>
 
       <Typography align='center' variant='subtitle2' style={{ color: 'white', paddingTop: 30, paddingBottom: 30 }}>
-        <Link to='/legal-faq' exact style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' exac style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' exact style={{ color: 'white' }}>Privacy Policy</Link>
+        <Link to='/legal-faq' style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' style={{ color: 'white' }}>Privacy Policy</Link>
       </Typography>
       
     </Container>

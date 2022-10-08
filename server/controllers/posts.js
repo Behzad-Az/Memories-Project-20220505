@@ -3,7 +3,7 @@ import AghazadehPost from '../models/aghazadehPost.js';
 
 export const getPosts = async (req, res) => {
   try {
-    const posts = await AghazadehPost.find().sort({ createdAt: -1 });
+    const posts = await AghazadehPost.find({}, { authorName: false, authorEmail: false, authorIpAddress: false }).sort({ createdAt: -1 });
     res.status(200).json(posts);
   }
   catch (error) {

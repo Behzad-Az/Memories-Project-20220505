@@ -5,16 +5,14 @@ import {
   CardContent,
   CardMedia,
   Button,
-  Typography,
-  Box,
-  Paper
+  Typography
 } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import { Place } from '@material-ui/icons';
 import moment from 'moment';
 
-import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { useAppDispatch } from '../../../store/store';
 import { incrementCrookCount, incrementCleanCount } from '../../../store/actions/posts';
 import { Post as PostType } from '../../../types/posts';
 
@@ -35,15 +33,19 @@ const Post: FC<Props> = ({ post, setCurrentId }) : JSX.Element => {
       <CardMedia
         className={classes.media}
         image={post.selectedFile}
-        title={post.location}
+        title={post.subjectLocation}
       />
 
       <Typography className={classes.name} variant='h4' gutterBottom>
-        { post.name }
+        { post.authorEmail }
+      </Typography>
+
+      <Typography className={classes.name} variant='h4' gutterBottom>
+        { post.subjectName }
       </Typography>
 
       <Typography className={classes.location} variant='body1'>
-        <Place fontSize='small' />from { post.location }
+        <Place fontSize='small' />from { post.subjectLocation }
       </Typography>
       <Typography variant='caption' color='textSecondary' className={classes.location}>
         Reported {moment(post.createdAt).fromNow()}

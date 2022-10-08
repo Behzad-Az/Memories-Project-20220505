@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import { Post } from '../types/posts';
 
-const url = 'https://aghazadeh-production.herokuapp.com/posts';
-// const url = 'http://localhost:5000/posts';
+// const url = 'https://aghazadeh-production.herokuapp.com/posts';
+const url = 'http://localhost:5000/posts';
 
 export const fetchPosts = () => axios.get(url);
 

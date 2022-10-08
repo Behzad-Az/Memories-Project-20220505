@@ -12,7 +12,7 @@ const TermsPage: FC<Props> = () : JSX.Element => {
     <Container maxWidth='lg'>
 
       <Typography align='center' variant='subtitle2' style={{ color: 'white', paddingTop: 30, paddingBottom: 30 }}>
-        <Link to='/' exact style={{ color: 'white' }}>Home</Link> | <Link to='/legal-faq' exact style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' exac style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' exact style={{ color: 'white' }}>Privacy Policy</Link>
+        <Link to='/' style={{ color: 'white' }}>Home</Link> | <Link to='/legal-faq' style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' style={{ color: 'white' }}>Privacy Policy</Link>
       </Typography>
 
       <Typography variant='h4' style={{ color: 'white', paddingBottom: 15 }}>
@@ -92,7 +92,7 @@ const TermsPage: FC<Props> = () : JSX.Element => {
       </Typography>
 
       <Typography align='center' variant='subtitle2' style={{ color: 'white', paddingTop: 30, paddingBottom: 30 }}>
-        <Link to='/' exact style={{ color: 'white' }}>Home</Link> | <Link to='/legal-faq' exact style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' exac style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' exact style={{ color: 'white' }}>Privacy Policy</Link>
+        <Link to='/' style={{ color: 'white' }}>Home</Link> | <Link to='/legal-faq' style={{ color: 'white' }}>Legal FAQ</Link> | <Link to='/terms' style={{ color: 'white' }}>Terms & Conditions</Link> | <Link to='/privacy' style={{ color: 'white' }}>Privacy Policy</Link>
       </Typography>
 
     </Container>

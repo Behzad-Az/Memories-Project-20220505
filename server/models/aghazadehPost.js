@@ -1,9 +1,15 @@
 import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
-  location: String,
+  authorName: String,
+  authorEmail: String,
+  authorIpAddress: {
+    type: String,
+    default: '0:0:0:0:0'
+  },
+  subjectName: String,
+  subjectLocation: String,
   description: String,
-  name: String,
   tags: [String],
   selectedFile: String,
   cleanCount: {
