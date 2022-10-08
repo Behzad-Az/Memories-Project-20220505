@@ -5,8 +5,11 @@ import {
   Typography,
   Paper,
   Checkbox,
-  FormControlLabel
+  FormControlLabel,
+  Grid,
+  Divider
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import FileBase from 'react-file-base64';
 
 import { useAppDispatch, useAppSelector } from '../../store/store';
@@ -78,54 +81,78 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
   return (
     <Paper className={classes.paper}>
       <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
-        <Typography variant='h6'>{ currentId ? 'Editing' : 'Reporting' } an #Aghazadeh</Typography>
         
-        <TextField
-          name='authorName'
-          variant='outlined'
-          label='Your name'
-          fullWidth
-          value={postData.authorName}
-          onChange={e => setPostData({
-            ...postData,
-            authorName: e.target.value
-          })}
-        />
+        <Typography variant='h6' style={{ textAlign: 'center', width: '100%' }}>
+          Report a Rogue Connection
+        </Typography>
+        
+        <Typography variant='subtitle2' style={{ width: '100%' }}>
+          About You:
+        </Typography>
+        <Typography variant='caption'>
+          <Link to='/legal-faq'>Why do we need this?</Link>
+        </Typography>
+        <Divider component='line' style={{ width: '100%' }} />
+        <Grid container spacing={2} className={classes.multiTextBoxPerLine}>
+          <Grid item xs={6} sm={6} md={6} lg={6}>
+            <TextField
+              name='authorName'
+              variant='outlined'
+              label='Your name'
+              fullWidth
+              value={postData.authorName}
+              onChange={e => setPostData({
+                ...postData,
+                authorName: e.target.value
+              })}
+            />
+          </Grid>
+          <Grid item xs={6} sm={6} md={6} lg={6}>
+            <TextField
+              name='authorEmail'
+              variant='outlined'
+              label='Your email'
+              fullWidth
+              value={postData.authorEmail}
+              onChange={e => setPostData({
+                ...postData,
+                authorEmail: e.target.value
+              })}
+            />
+          </Grid>
+        </Grid>
 
-        <TextField
-          name='authorEmail'
-          variant='outlined'
-          label='Your email'
-          fullWidth
-          value={postData.authorEmail}
-          onChange={e => setPostData({
-            ...postData,
-            authorEmail: e.target.value
-          })}
-        />
+        <Typography variant='subtitle2' style={{ paddingTop: 10 }}>About Your Subject</Typography>
+        <Divider component='line' style={{ width: '100%' }} />
+        <Grid container spacing={2} className={classes.multiTextBoxPerLine}>
+          <Grid item xs={6} sm={6} md={6} lg={6}>
+            <TextField
+              name='subjectName'
+              variant='outlined'
+              label='Who is this about?'
+              fullWidth
+              value={postData.subjectName}
+              onChange={e => setPostData({
+                ...postData,
+                subjectName: e.target.value
+              })}
+            />
+          </Grid>
+          <Grid item xs={6} sm={6} md={6} lg={6}>
+            <TextField
+              name='subjectLocation'
+              variant='outlined'
+              label='Where do they live?'
+              fullWidth
+              value={postData.subjectLocation}
+              onChange={e => setPostData({
+                ...postData,
+                subjectLocation: e.target.value
+              })}
+            />
+          </Grid>
+        </Grid>
         
-        <TextField
-          name='subjectName'
-          variant='outlined'
-          label='Who is this about?'
-          fullWidth
-          value={postData.subjectName}
-          onChange={e => setPostData({
-            ...postData,
-            subjectName: e.target.value
-          })}
-        />
-        <TextField
-          name='subjectLocation'
-          variant='outlined'
-          label='Where do they live?'
-          fullWidth
-          value={postData.subjectLocation}
-          onChange={e => setPostData({
-            ...postData,
-            subjectLocation: e.target.value
-          })}
-        />
         <TextField
           name='description'
           variant='outlined'
@@ -141,7 +168,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
         <TextField
           name='tags'
           variant='outlined'
-          label='Tags'
+          label='Tags (e.g. Thief, Corrupt)'
           fullWidth
           value={postData.tags}
           onChange={e => setPostData({
@@ -149,6 +176,8 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
             tags: e.target.value.split(',')
           })}
         />
+
+        <Typography variant='body2' style={{ paddingTop: 10 }}>Select photo</Typography>
         <div className={classes.fileInput}>
           <FileBase
             type='file'
@@ -156,7 +185,7 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
             onDone={(output: any) => setPostData({ ...postData, selectedFile: output.base64 })}
           />
         </div>
-
+        
         <FormControlLabel
           control={
             <Checkbox
@@ -167,7 +196,11 @@ const Form: FC<Props> = ({ currentId, setCurrentId }) : JSX.Element => {
             />
           }
           label='I agree to the terms and conditions.'
+          style={{ width: '100%', justifyContent: 'center' }}
         />
+        <Typography variant='caption' align='center' style={{ width: '100%', paddingBottom: 10 }}>
+          <Link to='/terms'>Terms & Conditions</Link>
+        </Typography>
 
         <Button 
           className={classes.buttonSubmit}

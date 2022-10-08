@@ -9,10 +9,13 @@ export default makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
   },
+  multiTextBoxPerLine: {
+    paddingRight: theme.spacing(2),
+  },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   fileInput: {
     width: '97%',
