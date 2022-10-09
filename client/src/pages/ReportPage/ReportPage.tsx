@@ -79,7 +79,7 @@ const ReportPage: FC<Props> = () : JSX.Element => {
       postData.authorEmail.match(validRegex) &&
       postData.subjectName.length > 3 &&
       postData.subjectLocation.length > 3 &&
-      postData.description.length > 139 &&
+      postData.description.length > 49 &&
       postData.description.length < 501 &&
       postData.tags.length > 0 &&
       postData.selectedFile.length > 500
@@ -172,7 +172,7 @@ const ReportPage: FC<Props> = () : JSX.Element => {
           <TextField
             name='description'
             variant='outlined'
-            label='Description (min. 140, max. 500 characters)'
+            label='Description (min. 50, max. 500 characters)'
             multiline
             fullWidth
             value={postData.description}

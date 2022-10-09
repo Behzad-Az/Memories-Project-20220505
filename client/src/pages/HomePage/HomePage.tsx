@@ -84,7 +84,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
           <Box textAlign='center' paddingBottom='20px'>
             <TextField
               id='outlined-search'
-              label='Search by name or location' 
+              label='Search' 
               type='search' 
               variant='outlined'
               style={{
@@ -94,7 +94,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
                 borderBottomLeftRadius: 5,
                 height: 50,
                 width: '40%',
-                minWidth: 300,
+                minWidth: 200,
                 // color: 'white'
               }}
               value={searchPhrase}

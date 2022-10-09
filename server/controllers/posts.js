@@ -29,7 +29,7 @@ export const createPost = async (req, res) => {
       post.authorEmail.match(validRegex) &&
       post.subjectName.length > 3 &&
       post.subjectLocation.length > 3 &&
-      post.description.length > 139 &&
+      post.description.length > 49 &&
       post.description.length < 501 &&
       post.tags.length > 0 &&
       post.selectedFile.length > 500
