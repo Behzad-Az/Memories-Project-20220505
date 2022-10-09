@@ -62,7 +62,7 @@ const HomePage: FC<Props> = () : JSX.Element => {
         <Container>
 
           <Typography align='center' variant='h5' style={{ color: 'white', marginBottom: 15 }}>
-            The world should have no place for dirty Iranian money!
+            The world should have no place for corrupt Iranian money!
           </Typography>
 
           <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
