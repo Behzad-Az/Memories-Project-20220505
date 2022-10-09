@@ -38,7 +38,7 @@ const removeAPost = (deletedPost: Post) => (dispatch: any) : Promise<void> => {
   return Promise.resolve();
 };
 
-export const fetchPosts = () => async (dispatch: any) => {
+export const fetchPosts = (searchPhrase: string | null) => async (dispatch: any) => {
   try {
     dispatch(rewritePosts({ 
       lastFetched: Date.now(),
@@ -46,7 +46,7 @@ export const fetchPosts = () => async (dispatch: any) => {
       error: '',
       content: []
     }));
-    const { status, data } = await api.fetchPosts();
+    const { status, data } = await api.fetchPosts(searchPhrase);
     if (status === 200) {
       dispatch(rewritePosts({ 
         lastFetched: Date.now(),

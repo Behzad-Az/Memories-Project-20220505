@@ -4,7 +4,10 @@ import {
   AppBar,
   Typography,
   Grow,
-  Grid
+  Grid,
+  TextField,
+  Button,
+  Box
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -21,12 +24,13 @@ import './HomePage.css';
 interface Props {};
 
 const HomePage: FC<Props> = () : JSX.Element => {
-  const [currentId, setCurrentId] = useState<string | null>(null);
   const classes = useStyles();
   const dispatch = useAppDispatch();
 
+  const [searchPhrase, setSearchPhrase] = useState<string>('');
+
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchPosts(searchPhrase));
   }, [dispatch]);
 
   return (
@@ -57,9 +61,9 @@ const HomePage: FC<Props> = () : JSX.Element => {
 
         <Container>
 
-        <Typography align='center' variant='h5' style={{ color: 'white', marginBottom: 15 }}>
-          The world should have no place for dirty Iranian money!
-        </Typography>
+          <Typography align='center' variant='h5' style={{ color: 'white', marginBottom: 15 }}>
+            The world should have no place for dirty Iranian money!
+          </Typography>
 
           <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
             Our mission is to expose those who have profited from the rogue Iranian regime at the expense of the Iranian public. Why should the regime enablers live freely and comfortably around the globe while Iranians inside Iran suffer under a tyrannical and corrupt regime.
@@ -76,6 +80,40 @@ const HomePage: FC<Props> = () : JSX.Element => {
           <Typography align='center' variant='subtitle1' style={{ color: 'white', marginBottom: 15 }}>
             Is this legal? Well, is enabling a murderous regime legal? Visit <Link to='/legal-faq' style={{ color: 'white' }}>Legal FAQ</Link> for more info. 
           </Typography>
+
+          <Box textAlign='center' paddingBottom='20px'>
+            <TextField
+              id='outlined-search'
+              label='Search by name or location' 
+              type='search' 
+              variant='outlined'
+              style={{
+                backgroundColor: 'white',
+                borderRadius: 0,
+                borderTopLeftRadius: 5,
+                borderBottomLeftRadius: 5,
+                height: 50,
+                width: '40%',
+                minWidth: 300,
+                // color: 'white'
+              }}
+              value={searchPhrase}
+              onChange={e => setSearchPhrase(e.target.value.trim())}
+            />
+            <Button 
+              variant='contained'
+              color='primary'
+              style={{
+                borderRadius: 0,
+                borderTopRightRadius: 5,
+                borderBottomRightRadius: 5,
+                height: 50
+              }}
+              onClick={() => dispatch(fetchPosts(searchPhrase))}
+            >
+              Search
+            </Button>
+          </Box>
 
           <Grid container spacing={2} className={classes.mainContainer}>
             

@@ -2,11 +2,20 @@ import mongoose from 'mongoose';
 import AghazadehPost from '../models/aghazadehPost.js';
 
 export const getPosts = async (req, res) => {
+  const { searchPhrase } = req.query;
+  const regex = new RegExp('.*' + searchPhrase + '.*', 'i');
+  const searchFilters = searchPhrase ? {
+    $or: [
+      { subjectLocation: regex },
+      { subjectName: regex }
+    ]
+  } : {};
   try {
-    const posts = await AghazadehPost.find({}, { authorName: false, authorEmail: false, authorIpAddress: false }).sort({ createdAt: -1 });
+    const posts = await AghazadehPost.find(searchFilters, { authorName: false, authorEmail: false, authorIpAddress: false }).sort({ createdAt: -1 });
     res.status(200).json(posts);
   }
   catch (error) {
+    console.log(error);
     res.status(404).json({ message: error });
   }
 };
